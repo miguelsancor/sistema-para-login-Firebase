@@ -27,9 +27,16 @@
               "src/assets"
             ],
             "styles": [
+              "../loginAPP/node_modules/bootswatch/dist/simplex/bootstrap.css",
+              "../loginAPP/node_modules/font-awesome/css/font-awesome.css",
+
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+                "../loginAPP/node_modules/jquery/dist/jquery.js",
+                "../loginAPP/node_modules/popper.js/dist/umd/popper.js",
+                "../loginAPP/node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           },
           "configurations": {
             "production": {
