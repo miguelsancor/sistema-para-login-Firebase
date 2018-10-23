@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../servicios/auth.service';
 import { Router } from '@angular/router';
-import {FlashMessagesService} from 'angular2-flash-messages';
+import { FlashMessagesService } from 'ngx-flash-messages';
+import { timeout } from 'q';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -13,7 +14,7 @@ export class LoginPageComponent implements OnInit {
   constructor(
   public authService: AuthService,
   public router: Router,
-  public flashMensaje: FlashMessagesService
+  public flashMessagesService: FlashMessagesService
    
   ) { }
 
@@ -23,12 +24,14 @@ export class LoginPageComponent implements OnInit {
   onSubmitLogin(){
     this.authService.loginEmail(this.email, this.password)
     .then( (res) => {
-      this.flashMensaje.show('Usuario logado Correctamente.', 
-    {cssClass: 'alert-success', timeout: 4000});
+      this.flashMessagesService.show('Usuario logado Correctamente.', 
+      {classes : ['alert','alert-warning'], 
+      timeout: 4000});
       this.router.navigate(['/privado']);
     }).catch((err) =>{
-      this.flashMensaje.show(err.message, 
-    {cssClass: 'alert-danger', timeout: 4000});
+      this.flashMessagesService.show(err.message, 
+    {classes : ['alert','alert-danger'], 
+      timeout: 4000});
       this.router.navigate(['/login']);
     });
     

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
-import {FlashMessagesService} from 'angular2-flash-messages';
+import { FlashMessagesService } from 'ngx-flash-messages';
 
 import { AuthService } from '../../servicios/auth.service';
 import { Router } from '@angular/router';
@@ -17,7 +17,7 @@ export class RegisterPageComponent implements OnInit {
   constructor(
     public authService: AuthService,
     public router: Router,
-    public flashMensaje: FlashMessagesService 
+    public flashMessagesService: FlashMessagesService 
 
   ) { }
 
@@ -26,13 +26,16 @@ export class RegisterPageComponent implements OnInit {
 onSubmitAddUser(){
   this.authService.registerUser(this.email, this.password)
   .then( (res) => {
-    this.flashMensaje.show('Usuario Creado Correctamente.', 
-    {cssClass: 'alert-success', timeout: 4000});
+    this.flashMessagesService.show('Usuario Creado Correctamente.',
+    
+    {classes : ['alert','alert-success'], 
+    timeout: 4000});
    this.router.navigate(['/privado']);
   }).catch ( (err) => {
-    this.flashMensaje.show(err.message, 
-    {cssClass: 'alert-danger', timeout: 4000});
-        
+    this.flashMessagesService.show(err.message, 
+      {classes : ['alert','alert-danger'], 
+      timeout: 4000});
+         
   });
 }
 }
